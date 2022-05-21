@@ -9,6 +9,9 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import site.moheng.yuanling.ui.TranslationTableScreenHandler;
 
+/**
+ * MOD的ScreenHandle管理类
+ */
 public class ModScreenHandle {
 
     public static final ScreenHandlerType<TranslationTableScreenHandler> TRANSLATION_TABLE_SCREEN_HANDLER;
