@@ -10,6 +10,9 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 
+/**
+ * Mod主入口类
+ */
 public class YuanLing implements ModInitializer {
 	public static final String MOD_ID = "yuanling";
 
