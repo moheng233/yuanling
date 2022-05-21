@@ -1,0 +1,23 @@
+{
+    "variants": {
+        "facing=north": {
+            "model": "yuanling:block/translation_table",
+            "uvlock": true
+        },
+        "facing=east": {
+            "model": "yuanling:block/translation_table",
+            "y": 90,
+            "uvlock": true
+        },
+        "facing=south": {
+            "model": "yuanling:block/translation_table",
+            "y": 180,
+            "uvlock": true
+        },
+        "facing=west": {
+            "model": "yuanling:block/translation_table",
+            "y": 270,
+            "uvlock": true
+        }
+    }
+}

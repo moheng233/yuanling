@@ -1,9 +1,6 @@
-# Fabric Example Mod
+# 元灵之力
+以MC原版附魔书系统作为引子，引出的一套MC风格的魔法MOD
 
-## Setup
-
-For setup instructions please see the [fabric wiki page](https://fabricmc.net/wiki/tutorial:setup) that relates to the IDE that you are using.
-
-## License
-
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+## 名词解释
+### 元灵
+基于

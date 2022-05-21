@@ -1,0 +1,13 @@
+{
+    "text.yuanling.quality.0": "次品",
+    "text.yuanling.quality.1": "下品",
+    "text.yuanling.quality.2": "中品",
+    "text.yuanling.quality.3": "上品",
+    "text.yuanling.quality.4": "极品",
+    "itemGroup.yuanling.base": "元灵之力",
+    "item.yuanling.lingshi": "元灵石",
+    "item.yuanling.lingshi.tooltip": "富含元灵之力的石头",
+    "item.yuanling.imprint": "印记",
+    "block.yuanling.lingshi_cluster": "元灵晶石",
+    "block.yuanling.translation_table": "翻译桌"
+}
