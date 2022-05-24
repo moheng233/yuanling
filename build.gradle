@@ -17,6 +17,7 @@ repositories {
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
 	mavenCentral()
+	maven { url 'https://jitpack.io' }
 	maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
 	maven { url 'https://maven.wispforest.io' }
 	maven { url 'https://maven.terraformersmc.com/releases/'}
@@ -40,8 +41,8 @@ dependencies {
 	// 模型动画引擎
 	modImplementation "software.bernie.geckolib:geckolib-fabric-1.18:${project.geckolib_version}"
 	// GUI库
-	modImplementation "io.github.cottonmc:LibGui:${project.LibGui_version}"
-	include "io.github.cottonmc:LibGui:${project.LibGui_version}"
+	// modImplementation "com.github.moheng233:OakTree:${project.OakTree_version}"
+	// include "com.github.moheng233:OakTree:${project.OakTree_version}"
 
 	modImplementation 'com.terraformersmc:modmenu:3.2.2'
 }

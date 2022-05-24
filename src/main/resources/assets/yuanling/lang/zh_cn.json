@@ -9,5 +9,6 @@
     "item.yuanling.lingshi.tooltip": "富含元灵之力的石头",
     "item.yuanling.imprint": "印记",
     "block.yuanling.lingshi_cluster": "元灵晶石",
-    "block.yuanling.translation_table": "翻译桌"
+    "block.yuanling.translation_table": "翻译桌",
+    "ui.yuanling.table.title": "编程桌"
 }
