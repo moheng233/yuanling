@@ -1,12 +1,8 @@
 package site.moheng.yuanling.util;
 
 import io.wispforest.owo.util.NbtKey;
-import io.wispforest.owo.util.NbtKey.ListKey;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.nbt.NbtList;
 import net.minecraft.util.collection.DefaultedList;
 
 public class ItemHelper {

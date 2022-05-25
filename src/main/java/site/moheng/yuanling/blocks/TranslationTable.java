@@ -4,7 +4,6 @@ import javax.annotation.Nullable;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
-import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.HorizontalFacingBlock;
@@ -25,7 +24,6 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
-import site.moheng.yuanling.ModBlocks;
 import site.moheng.yuanling.block_entitys.TranslationTableEntity;
 
 public class TranslationTable extends HorizontalFacingBlock implements BlockEntityProvider {
@@ -96,7 +94,7 @@ public class TranslationTable extends HorizontalFacingBlock implements BlockEnti
             }
         }
 
-        return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
+        return state;
     }
 
     @Override

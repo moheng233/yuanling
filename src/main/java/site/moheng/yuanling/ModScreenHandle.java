@@ -1,11 +1,5 @@
 package site.moheng.yuanling;
 
-import net.fabricmc.api.EnvType;
-import
-
-net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType;
-import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
