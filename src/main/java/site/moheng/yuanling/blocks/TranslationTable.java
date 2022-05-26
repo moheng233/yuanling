@@ -2,6 +2,8 @@ package site.moheng.yuanling.blocks;
 
 import javax.annotation.Nullable;
 
+import org.checkerframework.checker.units.qual.m;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockRenderType;
@@ -10,13 +12,17 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.HorizontalFacingBlock;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager.Builder;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -31,10 +37,17 @@ import site.moheng.yuanling.block_entitys.TranslationTableEntity;
 public class TranslationTable extends HorizontalFacingBlock implements BlockEntityProvider {
     protected final VoxelShape shape;
 
+    private final DefaultedList<VoxelShape> slotShape = DefaultedList.ofSize(9);
+
     public TranslationTable(Settings settings) {
         super(settings);
 
         shape = Block.createCuboidShape(0, 13, 0, 16, 15, 16);
+
+        // for (int i = 0; i < 9; i++) {
+        //     slotShape.set(i, createCuboidShape((i + 1) * 2 + i * 4, 13, (i + 1) * 2 + i * 4, (i + 1) * 2 + (i + 1) * 4,
+        //             16, (i + 1) * 2 + (i + 1) * 4));
+        // }
 
         setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH));
     }
@@ -64,6 +77,12 @@ public class TranslationTable extends HorizontalFacingBlock implements BlockEnti
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+
+        return shape;
+    }
+
+    @Override
+    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return shape;
     }
 
@@ -76,7 +95,30 @@ public class TranslationTable extends HorizontalFacingBlock implements BlockEnti
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand,
             BlockHitResult hit) {
 
-        player.openHandledScreen((TranslationTableEntity)world.getBlockEntity(pos));
+        if (!world.isClient) {
+            var blockEntity = (TranslationTableEntity) world.getBlockEntity(pos);
+
+            if (player.isSneaking()) {
+                var item = blockEntity.inventory.getStack(0);
+
+                if (!item.isEmpty()) {
+                    blockEntity.inventory.setStack(0, ItemStack.EMPTY);
+
+                    dropStack(world, pos, Direction.UP, item);
+
+                    blockEntity.markDirty();
+                }
+            } else {
+                var handItem = player.getMainHandStack();
+
+                if (!handItem.isEmpty() && blockEntity.inventory.canInsert(handItem)) {
+                    blockEntity.inventory.addStack(handItem);
+                    player.setStackInHand(Hand.MAIN_HAND, ItemStack.EMPTY);
+                }
+            }
+        }
+
+        world.updateListeners(pos, state, state, Block.NOTIFY_LISTENERS);
 
         return ActionResult.SUCCESS;
     }
@@ -96,7 +138,7 @@ public class TranslationTable extends HorizontalFacingBlock implements BlockEnti
             }
         }
 
-        return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
+        return state;
     }
 
     @Override
@@ -117,6 +159,7 @@ public class TranslationTable extends HorizontalFacingBlock implements BlockEnti
 
     /**
      * 获取桌子其他部分的方向
+     * 
      * @param direction 当前桌子部分的朝向
      * @return 桌子其他部分的朝向
      */

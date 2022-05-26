@@ -11,6 +11,8 @@ public class Client implements ClientModInitializer {
     public void onInitializeClient() {
         ModClientScreen.init();
 
+        ModBlocks.initClient();
+
         BlockEntityRendererRegistry.register(ModBlockEntitys.TRANSLATION_TABLE_ENTITY, TranslationTableRender::new);
         
         ModelLoadingRegistry.INSTANCE.registerResourceProvider(rm -> new ModModelProvider());

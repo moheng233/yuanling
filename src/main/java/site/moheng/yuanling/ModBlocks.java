@@ -27,8 +27,12 @@ public class ModBlocks implements BlockRegistryContainer {
             FabricBlockSettings.of(Material.WOOD)
                     .nonOpaque());
 
-    public static void init() {
+    public static void initClient() {
         BlockRenderLayerMap.INSTANCE.putBlock(LINGSHI_CLUSTER, RenderLayer.getCutout());
+    }
+
+    public static void init() {
+        
     }
 
     @Override
