@@ -7,7 +7,6 @@ import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.render.model.json.ModelTransformation;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.Vec3f;
-import site.moheng.yuanling.ModBlocks;
 import site.moheng.yuanling.block_entitys.TranslationTableEntity;
 import site.moheng.yuanling.blocks.TranslationTable;
 

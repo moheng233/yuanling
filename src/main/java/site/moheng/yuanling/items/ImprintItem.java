@@ -6,7 +6,6 @@ public class ImprintItem extends Item {
 
     public ImprintItem(Settings settings) {
         super(settings);
-        //TODO Auto-generated constructor stub
     }
     
 }

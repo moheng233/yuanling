@@ -3,7 +3,6 @@ package site.moheng.yuanling.screen;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.screen.ScreenHandler;
-import net.minecraft.screen.ScreenHandlerFactory;
 import site.moheng.yuanling.ModScreenHandle;
 
 public class TranslationTableScreenHandler extends ScreenHandler {

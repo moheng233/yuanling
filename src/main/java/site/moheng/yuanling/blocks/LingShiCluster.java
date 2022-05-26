@@ -62,6 +62,9 @@ public class LingShiCluster extends Block {
             case DOWN: {
                 return this.downShape;
             }
+            default: {
+                break;
+            }
         }
         return this.upShape;
     }

@@ -4,7 +4,6 @@ import java.util.List;
 
 import io.wispforest.owo.particles.ClientParticles;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.client.util.math.Vector3d;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;

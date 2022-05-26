@@ -3,9 +3,7 @@ package site.moheng.yuanling.model;
 import org.jetbrains.annotations.Nullable;
 
 import net.fabricmc.fabric.api.client.model.ModelProviderContext;
-import net.fabricmc.fabric.api.client.model.ModelProviderException;
 import net.fabricmc.fabric.api.client.model.ModelResourceProvider;
-import net.fabricmc.fabric.api.renderer.v1.model.FabricBakedModel;
 import net.minecraft.client.render.model.UnbakedModel;
 import net.minecraft.util.Identifier;
 import site.moheng.yuanling.YuanLing;

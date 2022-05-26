@@ -2,27 +2,20 @@ package site.moheng.yuanling.blocks;
 
 import javax.annotation.Nullable;
 
-import org.checkerframework.checker.units.qual.m;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
-import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.HorizontalFacingBlock;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager.Builder;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -31,13 +24,10 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
-import site.moheng.yuanling.ModBlocks;
 import site.moheng.yuanling.block_entitys.TranslationTableEntity;
 
 public class TranslationTable extends HorizontalFacingBlock implements BlockEntityProvider {
     protected final VoxelShape shape;
-
-    private final DefaultedList<VoxelShape> slotShape = DefaultedList.ofSize(9);
 
     public TranslationTable(Settings settings) {
         super(settings);
@@ -45,8 +35,9 @@ public class TranslationTable extends HorizontalFacingBlock implements BlockEnti
         shape = Block.createCuboidShape(0, 13, 0, 16, 15, 16);
 
         // for (int i = 0; i < 9; i++) {
-        //     slotShape.set(i, createCuboidShape((i + 1) * 2 + i * 4, 13, (i + 1) * 2 + i * 4, (i + 1) * 2 + (i + 1) * 4,
-        //             16, (i + 1) * 2 + (i + 1) * 4));
+        // slotShape.set(i, createCuboidShape((i + 1) * 2 + i * 4, 13, (i + 1) * 2 + i *
+        // 4, (i + 1) * 2 + (i + 1) * 4,
+        // 16, (i + 1) * 2 + (i + 1) * 4));
         // }
 
         setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH));

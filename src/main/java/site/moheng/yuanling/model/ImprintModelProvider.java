@@ -1,6 +1,5 @@
 package site.moheng.yuanling.model;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -13,7 +12,6 @@ import java.util.function.Supplier;
 import com.mojang.datafixers.util.Pair;
 
 import net.fabricmc.fabric.api.renderer.v1.RendererAccess;
-import net.fabricmc.fabric.api.renderer.v1.material.RenderMaterial;
 import net.fabricmc.fabric.api.renderer.v1.mesh.Mesh;
 import net.fabricmc.fabric.api.renderer.v1.mesh.MutableQuadView;
 import net.fabricmc.fabric.api.renderer.v1.model.FabricBakedModel;
@@ -25,19 +23,15 @@ import net.minecraft.client.render.model.BakedQuad;
 import net.minecraft.client.render.model.ModelBakeSettings;
 import net.minecraft.client.render.model.ModelLoader;
 import net.minecraft.client.render.model.UnbakedModel;
-import net.minecraft.client.render.model.json.JsonUnbakedModel;
 import net.minecraft.client.render.model.json.ModelOverrideList;
 import net.minecraft.client.render.model.json.ModelTransformation;
 import net.minecraft.client.texture.Sprite;
-import net.minecraft.client.texture.SpriteAtlasTexture;
 import net.minecraft.client.util.SpriteIdentifier;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.Vec3f;
 import net.minecraft.world.BlockRenderView;
 import site.moheng.yuanling.YuanLing;
 
@@ -51,7 +45,6 @@ public class ImprintModelProvider implements UnbakedModel, BakedModel, FabricBak
 
     private Mesh mesh;
 
-    private ModelTransformation transformation;
 
     @Override
     public Collection<Identifier> getModelDependencies() {
@@ -67,8 +60,6 @@ public class ImprintModelProvider implements UnbakedModel, BakedModel, FabricBak
     @Override
     public BakedModel bake(ModelLoader modelLoader, Function<SpriteIdentifier, Sprite> sprGet, ModelBakeSettings var3,
             Identifier var4) {
-        JsonUnbakedModel defaultItemModel = (JsonUnbakedModel) modelLoader.getOrLoadModel(DEFAULT_ITEM_MODEL);
-        transformation = defaultItemModel.getTransformations();
 
 
         voidImprintSprite = sprGet.apply(voidImprintIdentifier);
@@ -138,7 +129,6 @@ public class ImprintModelProvider implements UnbakedModel, BakedModel, FabricBak
 
     @Override
     public Sprite getParticleSprite() {
-        // TODO Auto-generated method stub
         return null;
     }
 
