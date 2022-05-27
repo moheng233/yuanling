@@ -16,6 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateManager.Builder;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -145,6 +146,15 @@ public class TranslationTable extends HorizontalFacingBlock implements BlockEnti
 
             // world.updateNeighbors(pos, Blocks.AIR);
             // state.updateNeighbors(world, pos, Block.NOTIFY_ALL);
+        }
+    }
+
+    @Override
+    public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+        if (!world.isClient()) {
+            var block_entitys = (TranslationTableEntity) world.getBlockEntity(pos);
+
+            dropStack(world, pos, Direction.UP, block_entitys.inventory.getStack(0));
         }
     }
 

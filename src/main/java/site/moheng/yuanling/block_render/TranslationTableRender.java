@@ -21,6 +21,13 @@ public class TranslationTableRender implements BlockEntityRenderer<TranslationTa
             VertexConsumerProvider vertexConsumers, int light,
             int overlay) {
 
+        var blockstate = blockEntity.getWorld().getBlockState(blockEntity.getPos());
+
+        // 防止出现方块被破坏后，仍然渲染一帧的问题
+        if (!(blockstate.getBlock() instanceof TranslationTable)) {
+            return;
+        }
+
         var item = blockEntity.inventory.getStack(0);
 
         if (!item.isEmpty()) {
@@ -29,16 +36,21 @@ public class TranslationTableRender implements BlockEntityRenderer<TranslationTa
             matrixs.translate(0.5, 0.0625 * 16, 0.5);
             matrixs.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(90));
 
-            var dir = blockEntity.getWorld().getBlockState(blockEntity.getPos()).get(TranslationTable.FACING);
+            var dir = blockstate.get(TranslationTable.FACING);
 
             switch (dir) {
                 case NORTH:
+                    matrixs.translate(0, -0.1, 0);
                     break;
                 case EAST:
+                    matrixs.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(-90));
+                    matrixs.translate(0, -0.1, 0);
                     break;
                 case SOUTH:
                     break;
                 case WEST:
+                matrixs.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(-90));
+                    matrixs.translate(0, -0.1, 0);
                     break;
                 default:
                     break;
