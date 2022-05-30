@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '0.11-SNAPSHOT'
+	id 'fabric-loom' version '0.12-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -21,10 +21,21 @@ repositories {
 	maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
 	maven { url 'https://maven.wispforest.io' }
 	maven { url 'https://maven.terraformersmc.com/releases/'}
+
 	maven {
-        name = "CottonMC"
-        url = "https://server.bbkr.space/artifactory/libs-release"
+        url = uri("https://maven.pkg.github.com/mozilla/rhino")
+        credentials {
+            username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+            password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+        }
     }
+
+	// ARRP
+	maven {
+		url = uri("https://storage.googleapis.com/devan-maven/")
+		// for 0.4.2 and older
+		// url uri("https://raw.githubusercontent.com/Devan-Kerman/Devan-Repo/master/")
+	}
 }
 
 dependencies {
@@ -44,7 +55,12 @@ dependencies {
 	// modImplementation "com.github.moheng233:OakTree:${project.OakTree_version}"
 	// include "com.github.moheng233:OakTree:${project.OakTree_version}"
 
+	// 动态材质包
+	modImplementation("net.devtech:arrp:${project.arrp_version}")
+
 	modImplementation 'com.terraformersmc:modmenu:3.2.2'
+
+	implementation group: 'org.graalvm.js', name: 'js', version: '22.1.0.1'
 }
 
 processResources {

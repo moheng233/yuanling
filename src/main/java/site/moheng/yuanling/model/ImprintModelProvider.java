@@ -69,12 +69,12 @@ public class ImprintModelProvider implements UnbakedModel, BakedModel, FabricBak
         
         // JsonUnbakedModel model = (JsonUnbakedModel) modelLoader.getOrLoadModel(new Identifier(YuanLing.MOD_ID, "item/v_imprint"));
 
-        emitter.square(Direction.DOWN, 0.0f, 0.0f, 1.0f, 1.0f, 0.4f);
+        emitter.square(Direction.SOUTH, 0.0f, 0.0f, 1.0f, 1.0f, 0.4f);
         emitter.spriteBake(0, voidImprintSprite, MutableQuadView.BAKE_LOCK_UV);
         emitter.spriteColor(0, -1, -1, -1, -1);
         emitter.emit();
         
-        emitter.square(Direction.UP, 0.0f, 0.0f, 1.0f, 1.0f, 0.4f);
+        emitter.square(Direction.NORTH, 0.0f, 0.0f, 1.0f, 1.0f, 0.4f);
         emitter.spriteBake(0, voidImprintSprite, MutableQuadView.BAKE_LOCK_UV);
         emitter.spriteColor(0, -1, -1, -1, -1);
         emitter.emit();

@@ -1,14 +1,25 @@
 package site.moheng.yuanling;
 
+import javax.script.ScriptEngineFactory;
+import javax.script.ScriptEngineManager;
+
+import com.oracle.truffle.js.parser.GraalJSEvaluator;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import io.wispforest.owo.registration.reflect.FieldRegistrationHandler;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
+import site.moheng.yuanling.spell.SpellContext;
+import site.moheng.yuanling.spell.SpellEngine;
 
 /**
  * Mod主入口类
@@ -19,11 +30,12 @@ public class YuanLing implements ModInitializer {
 	// This logger is used to write text to the console and the log file.
 	// It is considered best practice to use your mod id as the logger's name.
 	// That way, it's clear which mod wrote info, warnings, and errors.
-	public static final Logger LOGGER = LoggerFactory.getLogger("yuanling");
+	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
-    public static final ItemGroup YUANLING_GROUP = FabricItemGroupBuilder.create(new Identifier(YuanLing.MOD_ID, "base"))
-		.icon(() -> new ItemStack(ModItems.LINGSHI))
-		.build();
+	public static final ItemGroup YUANLING_GROUP = FabricItemGroupBuilder
+			.create(new Identifier(YuanLing.MOD_ID, "base"))
+			.icon(() -> new ItemStack(ModItems.LINGSHI))
+			.build();
 
 	@Override
 	public void onInitialize() {
@@ -48,5 +60,17 @@ public class YuanLing implements ModInitializer {
 		FieldRegistrationHandler.register(ModBlocks.class, MOD_ID, false);
 
 		ModBlockEntitys.init();
+
+		ServerLifecycleEvents.SERVER_STARTED.register((server) -> {
+			YuanLing.LOGGER.info("JS代码执行{}");
+			var context = new SpellContext();
+			context.eval("debug.print('JS引擎初始化成功')");
+
+			try {
+				context.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
 	}
 }

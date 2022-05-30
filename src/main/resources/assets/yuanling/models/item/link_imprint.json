@@ -1,0 +1,6 @@
+{
+    "parent": "yuanling:item/imprint",
+    "textures": {
+      "layer1": "yuanling:imprint/link"
+    }
+  }

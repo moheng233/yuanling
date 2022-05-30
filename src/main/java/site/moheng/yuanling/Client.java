@@ -4,6 +4,9 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.model.ModelLoadingRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
+import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
+import net.minecraft.client.item.ModelPredicateProviderRegistry;
+import net.minecraft.util.Identifier;
 import site.moheng.yuanling.block_render.TranslationTableRender;
 import site.moheng.yuanling.model.ModModelProvider;
 import site.moheng.yuanling.screen.hud.TableHUD;
@@ -19,9 +22,10 @@ public class Client implements ClientModInitializer {
 
         BlockEntityRendererRegistry.register(ModBlockEntitys.TRANSLATION_TABLE_ENTITY, TranslationTableRender::new);
         
-        ModelLoadingRegistry.INSTANCE.registerResourceProvider(rm -> new ModModelProvider());
+        // ModelLoadingRegistry.INSTANCE.registerResourceProvider(rm -> new ModModelProvider());
 
         // 初始化HUD
         HudRenderCallback.EVENT.register(new TableHUD()::onHudRender);
     }
+
 }

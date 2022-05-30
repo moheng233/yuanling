@@ -9,6 +9,7 @@ import site.moheng.yuanling.items.LingShiItem;
 public class ModItems implements ItemRegistryContainer {
     public static final LingShiItem LINGSHI = new LingShiItem(new FabricItemSettings().rarity(Rarity.COMMON).group(YuanLing.YUANLING_GROUP));
     public static final ImprintItem IMPRINT = new ImprintItem(new FabricItemSettings().rarity(Rarity.UNCOMMON).group(YuanLing.YUANLING_GROUP));
+    public static final ImprintItem LINK_IMPRINT = new ImprintItem(new FabricItemSettings().rarity(Rarity.UNCOMMON).group(YuanLing.YUANLING_GROUP));
 
     public static void init() {
 

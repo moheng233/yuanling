@@ -11,6 +11,7 @@ import net.minecraft.client.render.RenderLayer;
 import net.minecraft.item.BlockItem;
 import net.minecraft.sound.BlockSoundGroup;
 import site.moheng.yuanling.blocks.LingShiCluster;
+import site.moheng.yuanling.blocks.SpellPlate;
 import site.moheng.yuanling.blocks.TranslationTable;
 
 public class ModBlocks implements BlockRegistryContainer {
@@ -22,6 +23,9 @@ public class ModBlocks implements BlockRegistryContainer {
                     .sounds(BlockSoundGroup.AMETHYST_CLUSTER)
                     .strength(1.5f)
                     .luminance(s -> 5));
+
+    public static final SpellPlate SPELL_PLATE = new SpellPlate(FabricBlockSettings.of(Material.STONE)
+                    .nonOpaque());
 
     public static final TranslationTable TRANSLATION_TABLE = new TranslationTable(
             FabricBlockSettings.of(Material.WOOD)
